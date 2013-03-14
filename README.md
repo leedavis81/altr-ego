@@ -144,6 +144,5 @@ $backToScope = $alterEgo->getObject();
 Limitations
 -----------
 
-#It's PHP 5.4 Only
-
-#Whenever accessing an array property it will be converted (and maintained) as an ArrayObject. This is due to limitation on setting array values when using PHP overloading (__get).
+1. It's PHP 5.4 Only
+2. Whenever accessing an array property it will be converted (and maintained) as an ArrayObject. This is due to limitation on setting array values when using PHP overloading (__get).
