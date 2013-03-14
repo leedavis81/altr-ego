@@ -57,7 +57,8 @@ $alterEgo->priv = 'new private value';
 echo $alterEgo->priv . PHP_EOL;
 // Output: new private value
 
-// This value remains on your object, even after retrieving it back with $alterEgo->getObject(), now lets try some method calls
+// This value remains on your object, even after retrieving it back with $alterEgo->getObject()
+// now lets try some method calls
 echo $alterEgo->privFunc('Private call') . PHP_EOL;
 //Output: Private call
 
@@ -73,7 +74,8 @@ array(2) {
 }
 */
 
-// You can push values straight into them using standard PHP array syntax. But be aware, the array will be converted (and maintained) as an ArrayObject
+// You can push values straight into them using standard PHP array syntax. 
+// But be aware, the array will be converted (and maintained) as an ArrayObject
 $alterEgo->privArray[] = 'new value';
 var_dump($alterEgo->privArray);
 /**
@@ -119,12 +121,12 @@ object(ArrayObject)#5 (1) {
 */
 
 // We also have the facility to execute static function that have private/protected visibility.
-// It's rare you'll ever come across these, they're typically set as public, and when they are its advised you just call them directly
+// It's rare you'll ever come across these, they're typically set as public so you'd normally call them directly
 echo AltrEgo::callStatic($alterEgo, 'privStatFunc', 'private static call') . PHP_EOL;
 // Output: private static call
 
-Also works with arrays
-var_dump(AltrEgo::callStatic($alterEgo, 'privStatFunc', array('private', 'static', 'call')));   // doing the same thing with arrays
+// Also works with arrays
+var_dump(AltrEgo::callStatic($alterEgo, 'privStatFunc', array('private', 'static', 'call'))); 
 /**
 Output: 
 array(3) {
@@ -137,7 +139,8 @@ array(3) {
 }
 */
 
-// If at anytime you want to jump back into scope just fetch your object back, you can throw it back into AltrEgo::create() whenever you need
+// If at anytime you want to jump back into scope just fetch your object back.
+// You can throw it back into AltrEgo::create() whenever you need
 $backToScope = $alterEgo->getObject();
 ```
 
