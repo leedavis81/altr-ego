@@ -12,7 +12,7 @@ Well, for a number of reasons;
 
 Firstly; It doesn't use reflection!
 PHP 5.4 has a new "scope breaking" feature with the use of closures. Take a look at [Davey Shafik's closure puzzle blog post](http://daveyshafik.com/archives/32789-the-closure-puzzle.html) top get a good understanding of how this works. 
-This method is far quicker than using PHP's built in Reflection tools Tests that I've performed "breaking scope" with this method have given a speed increase in speed of around 52%.
+This method is far quicker than using PHP's built in Reflection tools. Tests I've performed "breaking scope" this way have given a speed increase in of around 52%.
 
 Secondly; AltrEgo allows you to completely maintain your object's state throughout any manipulations. 
 If you decide you want the scope to come back into play, you simply fetch your object back. Any changes made during its time as an "AltrEgo" object will remain.
