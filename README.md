@@ -21,7 +21,8 @@ If you decide you want the scope to come back into play, you simply fetch your o
 Usage
 -----
 
-`// Given the following class (nice and private all round)
+```php
+// Given the following class (nice and private all round)
 class Foo
 {
     private $priv = 'This is a private variable';
@@ -117,7 +118,6 @@ object(ArrayObject)#5 (1) {
 }
 */
 
-
 // We also have the facility to execute static function that have private/protected visibility.
 // It's rare you'll ever come across these, they're typically set as public, and when they are its advised you just call them directly
 echo AltrEgo::callStatic($alterEgo, 'privStatFunc', 'private static call') . PHP_EOL;
@@ -138,7 +138,8 @@ array(3) {
 */
 
 // If at anytime you want to jump back into scope just fetch your object back, you can throw it back into AltrEgo::create() whenever you need
-$backToScope = $alterEgo->getObject();`
+$backToScope = $alterEgo->getObject();
+```
 
 Limitations
 -----------
