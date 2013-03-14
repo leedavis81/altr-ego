@@ -38,11 +38,6 @@ class Foo
     {
         return $value;
     }
-
-    public static function publStatFunc($value)
-    {
-        return self::privStatFunc($value);
-    }
 }
 
 // We first off create an alter ego
