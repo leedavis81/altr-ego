@@ -1,7 +1,7 @@
-Create an AltrEgo
+Create an Altrego
 =================
 
-[![Build Status](https://travis-ci.org/leedavis81/AltrEgo.png?branch=master)](https://travis-ci.org/leedavis81/AltrEgo)
+[![Build Status](https://travis-ci.org/leedavis81/Altrego.png?branch=master)](https://travis-ci.org/leedavis81/Altrego)
 
 A tool to allow you access to an object's protected / private properties by breaking PHP scope. 
 This is useful in testing scenarios where you want to quickly verify a hidden encapsulated routine within your application. 
@@ -10,8 +10,8 @@ Running through the process of creating, mocking and injecting dependencies just
 This tool will help you call that private routine or inspect that protected property directly.
 
 
-AltrEgo allows you to completely maintain your object's state throughout any manipulations. 
-If you decide you want the scope to come back into play, you simply fetch your object back. Any changes made during its time as an "AltrEgo" object will remain.
+Altrego allows you to completely maintain your object's state throughout any manipulations. 
+If you decide you want the scope to come back into play, you simply fetch your object back. Any changes made during its time as an "Altrego" object will remain.
 
 This library uses adapters for different versions of PHP. 
 
@@ -50,7 +50,7 @@ class Foo
 }
 
 // We first off create an alter ego
-$alterEgo = AltrEgo::create(new Foo());
+$alterEgo = Altrego::create(new Foo());
 
 // Right, now lets get a hook on those private bits
 echo $alterEgo->priv . PHP_EOL;
@@ -126,11 +126,11 @@ object(ArrayObject)#5 (1) {
 
 // We also have the facility to execute static function that have private/protected visibility.
 // It's rare you'll ever come across these, they're typically set as public so you'd normally call them directly
-echo AltrEgo::callStatic($alterEgo, 'privStatFunc', 'private static call') . PHP_EOL;
+echo Altrego::callStatic($alterEgo, 'privStatFunc', 'private static call') . PHP_EOL;
 // Output: private static call
 
 // Also works with arrays
-var_dump(AltrEgo::callStatic($alterEgo, 'privStatFunc', array('private', 'static', 'call'))); 
+var_dump(Altrego::callStatic($alterEgo, 'privStatFunc', array('private', 'static', 'call'))); 
 /**
 Output: 
 array(3) {
@@ -144,7 +144,7 @@ array(3) {
 */
 
 // If at anytime you want to jump back into scope just fetch your object back.
-// You can throw it back into AltrEgo::create() whenever you need
+// You can throw it back into Altrego::create() whenever you need
 $backToScope = $alterEgo->getObject();
 ```
 

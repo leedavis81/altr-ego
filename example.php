@@ -1,5 +1,5 @@
 <?php
-use AltrEgo\AltrEgo;
+use Altrego\Altrego;
 require_once 'vendor/autoload.php';
 
 
@@ -27,7 +27,7 @@ class Foo
 
 
 // First off; create an alter ego
-$alterEgo = AltrEgo::create(new Foo());
+$alterEgo = Altrego::create(new Foo());
 
 // Right, now lets get a hook on those private bits
 echo $alterEgo->priv . PHP_EOL;
@@ -54,10 +54,10 @@ var_dump($alterEgo->privArray);
 
 // We also have the facility to execute static function that have private/protected visibility.
 // It's rare you'll ever come across these, they're typically set as public, and when they are its advised you just call them directly
-echo AltrEgo::callStatic($alterEgo, 'privStatFunc', 'private static call') . PHP_EOL;
+echo Altrego::callStatic($alterEgo, 'privStatFunc', 'private static call') . PHP_EOL;
 
 // Also works with arrays
-var_dump(AltrEgo::callStatic($alterEgo, 'privStatFunc', array('private', 'static', 'call')));   // doing the same thing with arrays
+var_dump(Altrego::callStatic($alterEgo, 'privStatFunc', array('private', 'static', 'call')));   // doing the same thing with arrays
 
-// If at anytime you want to jump back into scope just fetch your object back, you can throw it back into AltrEgo::create() whenever you need
+// If at anytime you want to jump back into scope just fetch your object back, you can throw it back into Altrego::create() whenever you need
 $backToScope = $alterEgo->getObject();

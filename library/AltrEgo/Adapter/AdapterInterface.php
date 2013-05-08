@@ -1,5 +1,5 @@
 <?php
-namespace AltrEgo\Adapter;
+namespace Altrego\Adapter;
 
 /**
  * Copyright (c) 2013 individual committers of the code
@@ -61,7 +61,7 @@ interface AdapterInterface
 
 	/**
 	 * Allows exposure to privately defined static calls
-	 * @param mixed $object - Either a AltrEgo object, you own object or the class name the static function resides
+	 * @param mixed $object - Either a Altrego object, you own object or the class name the static function resides
 	 * @param string $name - the static function name you want to call
 	 * @param mixed $arguments - Can be a single argument, or an array of them that you wish to pass to the function call
 	 * @throws \Exception if not passed an object or an accessible class name

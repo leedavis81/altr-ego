@@ -1,5 +1,5 @@
 <?php
-namespace AltrEgoTests\Fixture;
+namespace AltregoTests\Fixture;
 
 class ExtendedFoo extends Foo
 {

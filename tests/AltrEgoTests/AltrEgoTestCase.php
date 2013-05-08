@@ -1,6 +1,6 @@
 <?php
-namespace AltrEgoTests;
+namespace AltregoTests;
 
-abstract class AltrEgoTestCase extends \PHPUnit_Framework_TestCase
+abstract class AltregoTestCase extends \PHPUnit_Framework_TestCase
 {
 }

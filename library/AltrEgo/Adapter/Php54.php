@@ -1,7 +1,7 @@
 <?php
-namespace AltrEgo\Adapter;
+namespace Altrego\Adapter;
 
-use AltrEgo\AltrEgo;
+use Altrego\Altrego;
 
 /**
  * Copyright (c) 2013 individual committers of the code
@@ -43,7 +43,7 @@ class Php54 extends AdapterAbstract
 
 
 	/** (non-PHPdoc)
-     * @see AltrEgo\Adapter.AdapterInterface::_call()
+     * @see Altrego\Adapter.AdapterInterface::_call()
      */
     public function _call($name, $arguments)
     {
@@ -58,7 +58,7 @@ class Php54 extends AdapterAbstract
     }
 
 	/** (non-PHPdoc)
-     * @see AltrEgo\Adapter.AdapterInterface::_get()
+     * @see Altrego\Adapter.AdapterInterface::_get()
      */
     public function _get($name)
     {
@@ -78,7 +78,7 @@ class Php54 extends AdapterAbstract
     }
 
 	/** (non-PHPdoc)
-     * @see AltrEgo\Adapter.AdapterInterface::_set()
+     * @see Altrego\Adapter.AdapterInterface::_set()
      */
     public function _set($name, $value)
     {
@@ -94,16 +94,16 @@ class Php54 extends AdapterAbstract
     }
 
 	/** (non-PHPdoc)
-     * @see AltrEgo\Adapter.AdapterInterface::_callStatic()
+     * @see Altrego\Adapter.AdapterInterface::_callStatic()
      */
     public static function _callStatic($object, $name, $arguments)
     {
 		if (is_object($object))
 		{
-			$class = ($object instanceof AltrEgo) ? get_class($object->getObject()) : get_class($object);
+			$class = ($object instanceof Altrego) ? get_class($object->getObject()) : get_class($object);
 		} elseif (!class_exists($object))
 		{
-			throw new \Exception('Static call (callStatic) to AltrEgo must be passed either an object or an accessible class name');
+			throw new \Exception('Static call (callStatic) to Altrego must be passed either an object or an accessible class name');
 		}
 		$callable = \Closure::bind(function() use ($name, $arguments, $class){
 			return call_user_func_array(array($class, $name), array($arguments));
