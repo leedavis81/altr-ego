@@ -1,21 +1,26 @@
 Create an AltrEgo
 =================
 
-A tool to allow you access to an object protected / private properties in PHP 5.4 or above
+[![Build Status](https://travis-ci.org/leedavis81/AltrEgo.png?branch=master)](https://travis-ci.org/leedavis81/AltrEgo)
 
-This is an implementation of [Chris McMacken's "Friends in PHP"](https://github.com/chrismcmacken/phptools/tree/master/friend) tool built specifically for PHP 5.4.
+A tool to allow you access to an object's protected / private properties by breaking PHP scope. 
+This is useful in testing scenarios where you want to verify a well hidden routine of your application
 
-Why bother?
------------
-
-Well, for a number of reasons;
-
-Firstly; It doesn't use reflection!
-PHP 5.4 has a new "scope breaking" feature with the use of closures. Take a look at [Davey Shafik's closure puzzle blog post](http://daveyshafik.com/archives/32789-the-closure-puzzle.html) top get a good understanding of how this works. 
-This method is far quicker than using PHP's built in Reflection tools. Tests I've performed "breaking scope" this way have given a speed increase in of around 52%.
-
-Secondly; AltrEgo allows you to completely maintain your object's state throughout any manipulations. 
+AltrEgo allows you to completely maintain your object's state throughout any manipulations. 
 If you decide you want the scope to come back into play, you simply fetch your object back. Any changes made during its time as an "AltrEgo" object will remain.
+
+This library uses adapters for different versions of PHP. 
+
+If you're using 5.3 
+-------------------
+Then PHP's Reflection classes are used to break the scope of your object. 
+
+
+For 5.4 this library uses closure scope binding
+-----------------------------------------------
+
+PHP 5.4 has a new "scope breaking" feature with the use of closures. Take a look at [Davey Shafik's closure puzzle blog post](http://daveyshafik.com/archives/32789-the-closure-puzzle.html) top get a good understanding of how this works. 
+This method is __far quicker__ than using PHP's built in Reflection tools. Tests I've performed "breaking scope" this way have given a speed increase in of around 52%.
 
 
 Usage
@@ -142,5 +147,5 @@ $backToScope = $alterEgo->getObject();
 Limitations
 -----------
 
-1. It's PHP 5.4 Only
-2. Whenever accessing an array property it will be converted (and maintained) as an ArrayObject. This is due to limitation on setting array values when using PHP overloading (__get).
+1. Whenever accessing an array property it will be converted (and maintained) as an ArrayObject. This is due to limitation on setting array values when using PHP overloading (__get). 
+If this is a problem you can either get the value directly, then overwrite it with a modified one. Or once you've retrieved the modified ArrayObject simply run ->toArray() on it.
