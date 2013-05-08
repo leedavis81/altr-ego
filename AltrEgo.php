@@ -140,10 +140,6 @@ class AltrEgo
 			{
 				throw new \Exception('Property ' . $name . ' doesn\'t exist on object of class ' . get_class($object));
 			}
-			if (is_array($object->$name))
-			{
-				$object->$name = new ArrayObject($object->$name);
-			}
 			$object->$name = $value;
 		};
 		$this->breakScopeAndExecute($callable);
