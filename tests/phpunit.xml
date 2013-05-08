@@ -8,11 +8,11 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="AltregoTests/Bootstrap.php">
+         bootstrap="./AltregoTests/Bootstrap.php">
 
     <testsuites>
         <testsuite name="Altrego Test Suite">
-            <directory>AltregoTests</directory>
+            <directory>./AltregoTests</directory>
         </testsuite>
     </testsuites>
     
