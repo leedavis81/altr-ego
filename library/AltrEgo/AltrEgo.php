@@ -1,5 +1,6 @@
 <?php
 namespace AltrEgo;
+
 /**
  * Copyright (c) 2013 individual committers of the code
  *
@@ -81,9 +82,9 @@ class AltrEgo
         if (version_compare(phpversion(), '5.4', '>='))
     	{
             return 'AltrEgo\Adapter\Php54';
-        } elseif (version_compare(phpversion(), '5', '>='))
+        } elseif (version_compare(phpversion(), '5.3.3', '>='))
         {
-            return 'AltrEgo\Adapter\Php5To53';
+            return 'AltrEgo\Adapter\Php53';
         } else
         {
             throw new \Exception('PHP Version must be a minimum of PHP 5');

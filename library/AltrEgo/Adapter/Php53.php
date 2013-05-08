@@ -2,6 +2,7 @@
 namespace AltrEgo\Adapter;
 
 use AltrEgo\AltrEgo;
+
 /**
  * Copyright (c) 2013 individual committers of the code
  *
@@ -37,7 +38,7 @@ use AltrEgo\AltrEgo;
  * Adapter for PHP 5.3 routines (uses reflection)
  * @author Lee Davis (leedavis81)
  */
-class Php5To53 extends AdapterAbstract
+class Php53 extends AdapterAbstract
 {
 
 	/** (non-PHPdoc)

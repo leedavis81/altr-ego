@@ -2,6 +2,7 @@
 namespace AltrEgo\Adapter;
 
 use AltrEgo\AltrEgo;
+
 /**
  * Copyright (c) 2013 individual committers of the code
  *

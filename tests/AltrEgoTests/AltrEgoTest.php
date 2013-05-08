@@ -4,7 +4,6 @@ namespace AltrEgoTests;
 use AltrEgo\AltrEgo,
     AltrEgoTests\Fixture;
 
-
 class AltrEgoTest extends AltrEgoTestCase
 {
 
