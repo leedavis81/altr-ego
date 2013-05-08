@@ -1,5 +1,5 @@
 <?php
-namespace Altrego;
+namespace AltrEgo;
 
 /**
  * Copyright (c) 2013 individual committers of the code
@@ -39,7 +39,7 @@ namespace Altrego;
  * Otherwise falls back to using Reflection on older versions of PHP (must be >= 5)
  * @author Lee Davis (leedavis81)
  */
-class Altrego
+class AltrEgo
 {
 
 	/**
@@ -67,7 +67,7 @@ class Altrego
 			$this->object = new $object;
 		} else
 		{
-			throw new \Exception('Altrego must be constructed with either an object or a class name');
+			throw new \Exception('AltrEgo must be constructed with either an object or a class name');
 		}
 	    $adapterClass = self::getAdapterClassName();
         $this->adapter = new $adapterClass($this->object);
@@ -81,10 +81,10 @@ class Altrego
 	{
         if (version_compare(phpversion(), '5.4', '>='))
     	{
-            return 'Altrego\Adapter\Php54';
+            return 'AltrEgo\Adapter\Php54';
         } elseif (version_compare(phpversion(), '5.3.3', '>='))
         {
-            return 'Altrego\Adapter\Php53';
+            return 'AltrEgo\Adapter\Php53';
         } else
         {
             throw new \Exception('PHP Version must be a minimum of PHP 5');
@@ -126,7 +126,7 @@ class Altrego
 
 	/**
 	 * Allows exposure to privately defined static calls
-	 * @param mixed $object - Either a Altrego object, you own object or the class name the static function resides
+	 * @param mixed $object - Either a AltrEgo object, you own object or the class name the static function resides
 	 * @param string $name - the static function name you want to call
 	 * @param mixed $arguments - Can be a single argument, or an array of them that you wish to pass to the function call
 	 * @throws \Exception

@@ -1,5 +1,5 @@
 <?php
-namespace Altrego\Adapter;
+namespace AltrEgo\Adapter;
 
 /**
  * Copyright (c) 2013 individual committers of the code

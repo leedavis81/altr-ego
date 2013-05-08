@@ -1,29 +1,29 @@
 <?php
-namespace AltregoTests;
+namespace AltrEgoTests;
 
-use Altrego\Altrego,
-    AltregoTests\Fixture;
+use AltrEgo\AltrEgo,
+    AltrEgoTests\Fixture;
 
-class AltregoTest extends AltregoTestCase
+class AltrEgoTest extends AltrEgoTestCase
 {
 
-    public function testCanCreateAltregoInstance()
+    public function testCanCreateAltrEgoInstance()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
-        $this->assertInstanceOf('Altrego\Altrego', $alterEgo);
+        $this->assertInstanceOf('AltrEgo\AltrEgo', $alterEgo);
     }
 
     public function testCanAccessPrivateVariable()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
         $this->assertEquals('This is a private variable', $alterEgo->priv);
     }
 
     public function testCanUpdatePrivateVariable()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
         $updatedText = 'Updated text!"£$%^&*()';
         $alterEgo->priv = $updatedText;
 
@@ -32,7 +32,7 @@ class AltregoTest extends AltregoTestCase
 
     public function testCanExecutePrivateMethod()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
         $echoText = 'Echo text!"£$%^&*()';
         $this->assertEquals($echoText, $alterEgo->privFunc($echoText));
@@ -40,7 +40,7 @@ class AltregoTest extends AltregoTestCase
 
     public function testCanExecutePrivateMethodWithArrayParams()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
         $echoText = array('Echo', 'text!', '"£$%^&*()');
         $this->assertEquals($echoText, $alterEgo->privFunc($echoText));
@@ -48,7 +48,7 @@ class AltregoTest extends AltregoTestCase
 
     public function testCanSetPrivateArrayEntry()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
         $alterEgo->privArray = array();
 
@@ -63,7 +63,7 @@ class AltregoTest extends AltregoTestCase
 
     public function testCanSetPrivateAssociativeArrayEntry()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
         $alterEgo->privArray = array();
 
@@ -82,19 +82,19 @@ class AltregoTest extends AltregoTestCase
 
     public function testCanCallPrivateStaticMethod()
     {
-        $alterEgo = Altrego::create(new Fixture\Foo());
+        $alterEgo = AltrEgo::create(new Fixture\Foo());
 
         $arguments = 'Staic Call !"£$%';
-        $this->assertEquals($arguments, Altrego::callStatic($alterEgo, 'privStatFunc', $arguments));
+        $this->assertEquals($arguments, AltrEgo::callStatic($alterEgo, 'privStatFunc', $arguments));
 
         $arrayArguments = array('Static',  'Call!', '"£$%');
-        $this->assertEquals($arguments, Altrego::callStatic($alterEgo, 'privStatFunc', $arguments));
+        $this->assertEquals($arguments, AltrEgo::callStatic($alterEgo, 'privStatFunc', $arguments));
     }
 
     public function testObjectMaintainsState()
     {
         $object = new Fixture\Foo();
-        $alterEgo = Altrego::create($object);
+        $alterEgo = AltrEgo::create($object);
 
         $this->assertEquals($object, $alterEgo->getObject());
     }
