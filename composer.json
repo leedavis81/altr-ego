@@ -1,5 +1,5 @@
 {
-    "name": "leedavis81/AltrEgo",
+    "name": "leedavis81/altr-ego",
     "description": "Access an objects protected / private properties and methods",
     "keywords": ["php", "break scope"],
     "license": "MIT",
