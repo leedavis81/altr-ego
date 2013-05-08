@@ -4,7 +4,11 @@ Create an AltrEgo
 [![Build Status](https://travis-ci.org/leedavis81/AltrEgo.png?branch=master)](https://travis-ci.org/leedavis81/AltrEgo)
 
 A tool to allow you access to an object's protected / private properties by breaking PHP scope. 
-This is useful in testing scenarios where you want to verify a well hidden routine of your application
+This is useful in testing scenarios where you want to quickly verify a hidden encapsulated routine within your application. 
+Often when you just want to test a small part of your application, that routine can be (rightly so) encapsulated and set to private / protected. And is uncallable from your test suite.
+Running through the process of creating, mocking and injecting dependencies just to get your object in a valid state for your test can be very timely.
+This tool will help you call that private routine or inspect that protected property directly.
+
 
 AltrEgo allows you to completely maintain your object's state throughout any manipulations. 
 If you decide you want the scope to come back into play, you simply fetch your object back. Any changes made during its time as an "AltrEgo" object will remain.
