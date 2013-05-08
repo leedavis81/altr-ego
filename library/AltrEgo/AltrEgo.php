@@ -1,4 +1,5 @@
 <?php
+namespace AltrEgo;
 /**
  * Copyright (c) 2013 individual committers of the code
  *
@@ -32,8 +33,9 @@
  * acknowledgments.
  *
  *
- * A tool to allow you access to an object protected / private properties in PHP 5.4 or above
- * This is loosly based on Chris McMacken's "Friends in PHP" tool but uses closures to break scope instead of reflection
+ * A tool to allow you access to an object protected / private properties in PHP
+ * This is loosly based on Chris McMacken's "Friends in PHP" tool but uses closures to break scope instead of reflection when using PHP 5.4
+ * Otherwise falls back to using Reflection on older versions of PHP (must be >= 5)
  * @author Lee Davis (leedavis81)
  */
 class AltrEgo
@@ -46,8 +48,13 @@ class AltrEgo
 	protected $object;
 
 	/**
+	 * Routine calls are sent to a PHP version specific adapter
+	 * @var unknown_type
+	 */
+	protected $adapter;
+
+	/**
 	 * @param mixed $object - Can be either an object instance or the class name you want instantiated
-	 * @throws \Exception - if an object is not passed and class of $object name cannot be found
 	 */
 	public function __construct($object)
 	{
@@ -61,6 +68,26 @@ class AltrEgo
 		{
 			throw new \Exception('AltrEgo must be constructed with either an object or a class name');
 		}
+	    $adapterClass = self::getAdapterClassName();
+        $this->adapter = new $adapterClass($this->object);
+	}
+
+	/**
+	 * Static call to fetch the adapter class name to use
+	 * @throws \Exception if version isn't high enough
+	 */
+	public static function getAdapterClassName()
+	{
+        if (version_compare(phpversion(), '5.4', '>='))
+    	{
+            return 'AltrEgo\Adapter\Php54';
+        } elseif (version_compare(phpversion(), '5', '>='))
+        {
+            return 'AltrEgo\Adapter\Php5To53';
+        } else
+        {
+            throw new \Exception('PHP Version must be a minimum of PHP 5');
+        }
 	}
 
 	/**
@@ -81,6 +108,21 @@ class AltrEgo
 		return $this->object;
 	}
 
+	public function __call($name, $arguments)
+	{
+	    return $this->adapter->_call($name, $arguments);
+	}
+
+	public function __get($name)
+	{
+	    return $this->adapter->_get($name);
+	}
+
+	public function __set($name, $value)
+	{
+        return $this->adapter->_set($name, $value);
+	}
+
 	/**
 	 * Allows exposure to privately defined static calls
 	 * @param mixed $object - Either a AltrEgo object, you own object or the class name the static function resides
@@ -90,68 +132,8 @@ class AltrEgo
 	 */
 	public static function callStatic($object, $name, $arguments)
 	{
-		if (is_object($object))
-		{
-			$class = ($object instanceof AltrEgo) ? get_class($object->getObject()) : get_class($object);
-		} elseif (!class_exists($object))
-		{
-			throw new \Exception('Static call (callStatic) to AltrEgo must be passed either an object or an accessible class name');
-		}
-		$callable = Closure::bind(function() use ($name, $arguments, $class){
-			return call_user_func_array(array($class, $name), array($arguments));
-		}, $this, $class);
-		return $callable();
+	    $className = self::getAdapterClassName();
+	    return $className::_callStatic($object, $name, $arguments);
 	}
 
-	public function __call($name, $arguments)
-	{
-		$object = $this->getObject();
-		$callable = function() use ($name, $arguments, $object){
-			if (!method_exists($object, $name)) {
-				throw new \Exception('Unable to invoke method ' . $name . ' on object of class ' . get_class($object));
-			}
-			return call_user_func_array(array($object, $name), (sizeof($arguments) > 1) ? array($arguments) : $arguments);
-		};
-		return $this->breakScopeAndExecute($callable);
-	}
-
-	public function __get($name)
-	{
-		$object = $this->getObject();
-		$callable = function() use ($name, $object) {
-			if (!property_exists($object, $name) && !method_exists($object, '__get'))
-			{
-				throw new \Exception('Property ' . $name . ' doesn\'t exist on object of class ' . get_class($object));
-			}
-			if (is_array($object->$name))
-			{
-				$object->$name = new ArrayObject($object->$name);
-			}
-			return $object->$name;
-		};
-		return $this->breakScopeAndExecute($callable);
-	}
-
-	public function __set($name, $value)
-	{
-		$object = $this->getObject();
-		$callable = function() use ($name, $value, $object) {
-			if (!property_exists($object, $name) && !method_exists($object, '__set'))
-			{
-				throw new \Exception('Property ' . $name . ' doesn\'t exist on object of class ' . get_class($object));
-			}
-			$object->$name = $value;
-		};
-		$this->breakScopeAndExecute($callable);
-	}
-
-	/**
-	 * Break the scope of a callble and execute it
-	 * @param Callable $closure
-	 */
-	protected function breakScopeAndExecute(Callable $closure)
-	{
-		$callable = Closure::bind($closure, $this, $this->getObject());
-		return $callable();
-	}
 }

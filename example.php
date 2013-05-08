@@ -1,6 +1,7 @@
 <?php
+use AltrEgo\AltrEgo;
+require_once 'vendor/autoload.php';
 
-require_once 'AltrEgo.php';
 
 class Foo
 {

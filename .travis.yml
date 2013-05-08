@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - 5.0
+  - 5.1
+  - 5.2
+  - 5.3
+  - 5.4
+
+before_script:
+  - mkdir -p ~/.composer && echo '{"config":{"github-oauth":{"github.com":"bad225b1e0c39782e9e4ddfca58ac5de803ea1c3"}}}' > ~/.composer/config.json
+  - composer install --dev --no-interaction
+
+script: phpunit --configuration tests/phpunit.xml
