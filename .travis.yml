@@ -5,8 +5,7 @@ php:
   - 5.4
 
 before_script:
-  - mkdir -p ~/.composer
-  - echo '{"config":{"github-oauth":{"github.com":"bad225b1e0c39782e9e4ddfca58ac5de803ea1c3"}}}' > ~/.composer/config.json
+  - mkdir -p ~/.composer && echo '{"config":{"github-oauth":{"github.com":"bad225b1e0c39782e9e4ddfca58ac5de803ea1c3"}}}' > ~/.composer/config.json
   - composer install --dev --no-interaction --prefer-source
 
-script: phpunit --configuration tests/phpunit.xml
+script: phpunit --configuration phpunit.xml
