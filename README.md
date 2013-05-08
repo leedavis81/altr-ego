@@ -1,7 +1,7 @@
 Create an AltrEgo
 =================
 
-[![Build Status](https://travis-ci.org/leedavis81/AltrEgo.png?branch=master)](https://travis-ci.org/leedavis81/AltrEgo)
+[![Build Status](https://travis-ci.org/leedavis81/altr-ego.png?branch=master)](https://travis-ci.org/leedavis81/altr-ego)
 
 A tool to allow you access to an object's protected / private properties by breaking PHP scope. 
 This is useful in testing scenarios where you want to quickly verify a hidden encapsulated routine within your application. 
