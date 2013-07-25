@@ -93,6 +93,15 @@ class Php54 extends AdapterAbstract
 		$this->breakScopeAndExecute($callable);
     }
 
+    public function _isset($name)
+    {
+        $object = $this->getObject();
+        $callable = function() use ($name, $object) {
+            return isset($object->$name);
+        };
+        return $this->breakScopeAndExecute($callable);
+    }
+
 	/** (non-PHPdoc)
      * @see AltrEgo\Adapter.AdapterInterface::_callStatic()
      */

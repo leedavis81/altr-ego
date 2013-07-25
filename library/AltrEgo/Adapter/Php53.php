@@ -92,6 +92,22 @@ class Php53 extends AdapterAbstract
         return $property->setValue($this->getObject(), $value);
     }
 
+    public function _isset($name)
+    {
+        try
+        {
+            $property = $this->getReflectionProperty($name);
+            if (!is_null($property)) {
+                $value = $property->getValue($this->getObject());
+                return isset($value);
+            }
+            return false;
+        } catch (\Exception $e)
+        {
+            return false;
+        }
+    }
+
 	/** (non-PHPdoc)
      * @see AltrEgo\Adapter.AdapterInterface::_callStatic()
      */

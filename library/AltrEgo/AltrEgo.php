@@ -124,6 +124,11 @@ class AltrEgo
         return $this->adapter->_set($name, $value);
 	}
 
+    public function __isset($name)
+    {
+        return $this->adapter->_isset($name);
+    }
+
 	/**
 	 * Allows exposure to privately defined static calls
 	 * @param mixed $object - Either a AltrEgo object, you own object or the class name the static function resides

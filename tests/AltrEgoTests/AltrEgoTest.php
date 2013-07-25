@@ -24,7 +24,7 @@ class AltrEgoTest extends AltrEgoTestCase
     public function testCanUpdatePrivateVariable()
     {
         $alterEgo = AltrEgo::create(new Fixture\Foo());
-        $updatedText = 'Updated text!"£$%^&*()';
+        $updatedText = 'Updated text!"ï¿½$%^&*()';
         $alterEgo->priv = $updatedText;
 
         $this->assertEquals($updatedText, $alterEgo->priv);
@@ -34,7 +34,7 @@ class AltrEgoTest extends AltrEgoTestCase
     {
         $alterEgo = AltrEgo::create(new Fixture\Foo());
 
-        $echoText = 'Echo text!"£$%^&*()';
+        $echoText = 'Echo text!"ï¿½$%^&*()';
         $this->assertEquals($echoText, $alterEgo->privFunc($echoText));
     }
 
@@ -42,7 +42,7 @@ class AltrEgoTest extends AltrEgoTestCase
     {
         $alterEgo = AltrEgo::create(new Fixture\Foo());
 
-        $echoText = array('Echo', 'text!', '"£$%^&*()');
+        $echoText = array('Echo', 'text!', '"ï¿½$%^&*()');
         $this->assertEquals($echoText, $alterEgo->privFunc($echoText));
     }
 
@@ -54,7 +54,7 @@ class AltrEgoTest extends AltrEgoTestCase
 
         $this->assertCount(0, $alterEgo->privArray);
 
-        $newValue = 'New Value!"£$%^&*(';
+        $newValue = 'New Value!"ï¿½$%^&*(';
         $alterEgo->privArray[] = $newValue;
         $this->assertContains($newValue, $alterEgo->privArray);
 
@@ -84,10 +84,10 @@ class AltrEgoTest extends AltrEgoTestCase
     {
         $alterEgo = AltrEgo::create(new Fixture\Foo());
 
-        $arguments = 'Staic Call !"£$%';
+        $arguments = 'Staic Call !"ï¿½$%';
         $this->assertEquals($arguments, AltrEgo::callStatic($alterEgo, 'privStatFunc', $arguments));
 
-        $arrayArguments = array('Static',  'Call!', '"£$%');
+        $arrayArguments = array('Static',  'Call!', '"ï¿½$%');
         $this->assertEquals($arguments, AltrEgo::callStatic($alterEgo, 'privStatFunc', $arguments));
     }
 
@@ -97,6 +97,22 @@ class AltrEgoTest extends AltrEgoTestCase
         $alterEgo = AltrEgo::create($object);
 
         $this->assertEquals($object, $alterEgo->getObject());
+    }
+
+    public function testVariableIsset()
+    {
+        $object = new Fixture\Foo();
+        $alterEgo = AltrEgo::create($object);
+
+        $this->assertTrue(isset($alterEgo->priv));
+    }
+
+    public function testVariableIsNotSet()
+    {
+        $object = new Fixture\Foo();
+        $alterEgo = AltrEgo::create($object);
+
+        $this->assertFalse(isset($alterEgo->nonexistent));
     }
 
 

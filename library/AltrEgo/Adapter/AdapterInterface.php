@@ -59,6 +59,13 @@ interface AdapterInterface
      */
     public function _set($name, $value);
 
+    /**
+     * Check if a variable is set
+     * @param $name name of variable
+     * @return boolean
+     */
+    public function _isset($name);
+
 	/**
 	 * Allows exposure to privately defined static calls
 	 * @param mixed $object - Either a AltrEgo object, you own object or the class name the static function resides
