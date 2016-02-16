@@ -3,6 +3,9 @@ language: php
 php:
   - 5.3
   - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
 
 before_script:
   - mkdir -p ~/.composer && echo '{"config":{"github-oauth":{"github.com":"bad225b1e0c39782e9e4ddfca58ac5de803ea1c3"}}}' > ~/.composer/config.json
