@@ -61,7 +61,7 @@ interface AdapterInterface
 
     /**
      * Check if a variable is set
-     * @param $name name of variable
+     * @param string $name name of variable
      * @return boolean
      */
     public function _isset($name);

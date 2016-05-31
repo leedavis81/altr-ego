@@ -50,7 +50,7 @@ class AltrEgo
 
 	/**
 	 * Routine calls are sent to a PHP version specific adapter
-	 * @var unknown_type
+	 * @var object
 	 */
 	protected $adapter;
 
@@ -93,7 +93,7 @@ class AltrEgo
 
 	/**
 	 * Factory call to create an alter ego
-	 * @param unknown_type $obj
+	 * @param object $obj
 	 */
 	public static function create($obj)
 	{
